@@ -1,9 +1,11 @@
 const express = require('express');
 const app = express();
-
+const tasks = require('./routes/tasks')
 const port = 3000;
-app.get('/', (req, res) => {
-    res.status(200).send("Task Manger")
-})
+
+// Middleware
+app.use(express.json())
+
+app.use('/api/v1/tasks', tasks)
 
 app.listen(port, () => { console.log(`Listening on port ${port}`) })
